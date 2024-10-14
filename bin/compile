@@ -55,10 +55,10 @@ log "Captured output"
 log "$(echo "$poetry_install_output" | indent)"
 
 log "Grep bin directory"
-log "$(echo "$poetry_install_output" | grep 'To get started you need Poetry's bin directory')"
+log "$(echo "$poetry_install_output" | grep 'To get started you need Poetry\'s bin directory')"
 
 # Extraire le chemin variable en utilisant grep et sed
-poetry_bin_dir=$(echo "$poetry_install_output" | grep 'To get started you need Poetry's bin directory' | sed 's/.*`\([^`]*\)`.*/\1/')
+poetry_bin_dir=$(echo "$poetry_install_output" | grep 'To get started you need Poetry\'s bin directory' | sed 's/.*`\([^`]*\)`.*/\1/')
 
 log "Poetry bin directory extracted: $poetry_bin_dir"
 
