@@ -56,6 +56,8 @@ poetry_bin_dir=$(echo "$poetry_install_output" | grep 'bin directory' | sed 's/.
 
 log "Poetry bin directory extracted: $poetry_bin_dir"
 
+
+log "Add Poetry to the PATH"
 # Vérifier que le chemin a bien été extrait
 if [ -n "$poetry_bin_dir" ]; then
   # Ajouter dynamiquement le chemin au PATH
@@ -65,9 +67,7 @@ else
   echo "Failed to extract Poetry bin directory."
 fi
 
-
-log "Add Poetry to the PATH"
-export PATH="/app/.local/bin:$PATH"
+# export PATH="/app/.local/bin:$PATH"
 
 if [ "${POETRY_VERSION:0:3}" = "1.2" ] ; then
     # Allow `poetry export` to work even if we aren't using the Python version that the project will ultimately run in
