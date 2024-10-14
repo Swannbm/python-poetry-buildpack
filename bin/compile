@@ -54,6 +54,9 @@ poetry_install_output=$(curl -sSL https://install.python-poetry.org | python3)
 log "Captured output"
 log "$(echo "$poetry_install_output" | indent)"
 
+log "Grep bin directory"
+log "$(echo "$poetry_install_output" | grep 'bin directory')"
+
 # Extraire le chemin variable en utilisant grep et sed
 poetry_bin_dir=$(echo "$poetry_install_output" | grep 'bin directory' | sed 's/.*`\([^`]*\)`.*/\1/')
 
@@ -65,9 +68,9 @@ log "Add Poetry to the PATH"
 if [ -n "$poetry_bin_dir" ]; then
   # Ajouter dynamiquement le chemin au PATH
   export PATH="$poetry_bin_dir:$PATH"
-  echo "Poetry bin directory ($poetry_bin_dir) added to PATH."
+  log "Poetry bin directory ($poetry_bin_dir) added to PATH."
 else
-  echo "Failed to extract Poetry bin directory."
+  log "Failed to extract Poetry bin directory."
 fi
 
 # export PATH="/app/.local/bin:$PATH"
