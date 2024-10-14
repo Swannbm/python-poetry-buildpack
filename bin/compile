@@ -47,9 +47,12 @@ log "Generate requirements.txt with Poetry"
 # curl -sSL https://install.python-poetry.org | python3 | indent
 
 
-log "Install Poetry avec capture du path"
+log "Install Poetry with path updating"
 # Exécute la commande et capture la sortie
 poetry_install_output=$(curl -sSL https://install.python-poetry.org | python3)
+
+log "Captured output"
+log "$(echo "$poetry_install_output" | indent)"
 
 # Extraire le chemin variable en utilisant grep et sed
 poetry_bin_dir=$(echo "$poetry_install_output" | grep 'bin directory' | sed 's/.*`\([^`]*\)`.*/\1/')
